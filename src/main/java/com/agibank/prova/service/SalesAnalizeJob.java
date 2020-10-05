@@ -1,4 +1,4 @@
-package com.agibank.prova.controller;
+package com.agibank.prova.service;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,12 +11,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import com.agibank.prova.util.HandleFiles;
-
 @Service
 public class SalesAnalizeJob {
 	
-	Logger logger = LoggerFactory.getLogger(SalesAnalizeJob.class);
+	private Logger logger = LoggerFactory.getLogger(SalesAnalizeJob.class);
 	
 	@Autowired
 	private HandleFiles handleFiles;
@@ -39,12 +37,12 @@ public class SalesAnalizeJob {
 		/*
 		 * Cria diretório saída se năo existir
 		 */
-		handleFiles.createDirectoty(folderOut);
+		handleFiles.createDirectoty(HandleFiles.CURRENT_USER_HOME_DIR + folderOut);
 		
 		/*
 		 * Carrega lista de arquivos .dat no diretório de entrada
 		 */
-		File[] files = handleFiles.getListOfFiles(folderIn, ".dat");
+		File[] files = handleFiles.getListOfFiles(HandleFiles.CURRENT_USER_HOME_DIR + folderIn, ".dat");
 		
 		if(files != null){
 			
@@ -56,14 +54,14 @@ public class SalesAnalizeJob {
 				 * Verifica se o arquivo já foi importado, caso contrário
 				 * procede leitura do arquivo e somatórios
 				 */
-				if (!handleFiles.fileExists(folderOut + newName)) {
+				if (!handleFiles.fileExists(HandleFiles.CURRENT_USER_HOME_DIR + folderOut + newName)) {
 					
 					/*
 					 * Cria o arquivo de saída
 					 */
-					handleFiles.createFile(folderOut + newName);
+					handleFiles.createFile(HandleFiles.CURRENT_USER_HOME_DIR + folderOut + newName);
 					
-					BufferedReader in = handleFiles.readFileContents(folderIn + files[index].getName());
+					BufferedReader in = handleFiles.readFileContents(HandleFiles.CURRENT_USER_HOME_DIR + folderIn + files[index].getName());
 
 					logger.info("%%% Processando arquivo de entrada " + files[index].getName() + "...");					
 					
@@ -81,12 +79,12 @@ public class SalesAnalizeJob {
 							/*
 							 * Grava resultados no arquivo de saída
 							 */
-							handleFiles.writeOnFile(folderOut + newName, salesAnalize.createReport().toString());
+							handleFiles.writeOnFile(HandleFiles.CURRENT_USER_HOME_DIR + folderOut + newName, salesAnalize.createReport().toString());
 							
 							logger.info("%%% Arquivo " + newName + " exportado!\n");
 								
 						} catch (IOException e) {
-							e.printStackTrace();
+							logger.error("Erro ao realizar leitura/escrita do arquivo", e);
 						}
 					}
 				}

@@ -98,8 +98,8 @@ public class SalesAnalizeBuilder {
 			}
 		}
 		
-		report.setIdBiggerSalle(saleBiggerValue.getId());
-		report.setSellerNameSmallerAmount(saleSmallerValue.getSalesman());
+		report.setIdBiggerSalle(saleBiggerValue.getId() != null ? saleBiggerValue.getId() : 0);
+		report.setSellerNameSmallerAmount(saleSmallerValue.getSalesman() != null ? saleSmallerValue.getSalesman() : "");
 		
 		return report;
 	}
