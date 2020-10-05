@@ -1,4 +1,4 @@
-package com.agibank.prova.bulder;
+package com.agibank.prova.builder;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
