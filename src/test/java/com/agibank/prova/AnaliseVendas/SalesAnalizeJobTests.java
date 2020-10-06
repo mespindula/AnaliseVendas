@@ -41,7 +41,7 @@ class SalesAnalizeJobTests {
 	}
 
 	@Test
-	void processFileOutput() throws URISyntaxException {			
+	void processFileOutput() {
 		clearFolder(folderOut);
 		
 		handleFiles.createDirectoty(HandleFiles.CURRENT_USER_HOME_DIR + folderIn);
