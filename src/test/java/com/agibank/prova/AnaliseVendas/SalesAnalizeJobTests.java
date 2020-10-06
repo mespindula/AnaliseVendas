@@ -3,7 +3,6 @@ package com.agibank.prova.AnaliseVendas;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
-import java.net.URISyntaxException;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
