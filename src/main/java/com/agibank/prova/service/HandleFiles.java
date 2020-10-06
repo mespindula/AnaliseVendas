@@ -20,7 +20,6 @@ public class HandleFiles {
 	private Logger logger = LoggerFactory.getLogger(SalesAnalizeJob.class);
 
 	public static final String CURRENT_USER_HOME_DIR = System.getProperty("user.home");
-	public static final String CURRENT_USER_DIR = System.getProperty("user.dir");
 
 	public File[] getListOfFiles(String dir) {
 		File fl = new File(dir);
