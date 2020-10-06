@@ -45,7 +45,7 @@ class SalesAnalizeJobTests {
 		clearFolder(folderOut);
 		
 		handleFiles.createDirectoty(HandleFiles.CURRENT_USER_HOME_DIR + folderIn);
-		handleFiles.fileCopy(getClass().getResource("teste.dat").toURI().getPath().toString(), HandleFiles.CURRENT_USER_HOME_DIR + folderIn + "teste.dat");
+		handleFiles.fileCopy(HandleFiles.CURRENT_USER_DIR + "\\teste.dat", HandleFiles.CURRENT_USER_HOME_DIR + folderIn + "teste.dat");
 		
 		job.runAnalize();
 		
